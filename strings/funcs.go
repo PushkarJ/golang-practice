@@ -1,4 +1,5 @@
 package strings
+
 import (
 	"fmt"
 	"strings"
@@ -19,4 +20,3 @@ func Funcs() {
 	fmt.Println(strings.IndexAny(input, "ao"))
 
 }
-
