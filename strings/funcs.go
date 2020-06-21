@@ -1,10 +1,10 @@
-ckage main
+package strings
 import (
 	"fmt"
 	"strings"
 )
 
-func main() {
+func Funcs() {
 	input := "woahwoahwoahwoahwoahwoahwoowoahwoah"
 	fmt.Println(strings.Count(input, "woah"))
 	fmt.Println(strings.Count(input, "woo"))
