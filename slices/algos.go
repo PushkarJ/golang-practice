@@ -110,7 +110,7 @@ func lengthOfLongestBalancedParanthesisString(paranthesisList []string) int {
 	previous := paranthesisList[0]
 	if previous == "(" {
 		left = 1
-	} //if right paranthesis is found that is anyone unbalanced so no need to increment
+	} //if right paranthesis is found that is anyway unbalanced so no need to increment
 	for i := 1; i < len(paranthesisList); i++ {
 		if paranthesisList[i] == "(" {
 			left++
