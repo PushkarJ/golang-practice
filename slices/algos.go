@@ -14,22 +14,22 @@ func Algos() {
 	list = []int{1, 1, 3, 4, 6, 6, 8, 90}
 	fmt.Println("List with Duplicates: ", list, "List without duplicates: ", removeDuplicatesFromASortedList(list))
 
-	pList := []string {"(", ")", "(", "(", "(", ")"}
-        fmt.Println("Length of longest continuous balanced paranthesis sequence: ",lengthOfLongestBalancedParanthesisString(pList)) 
-        pList = []string {"(", ")", "(", "(", "(", ")", ")"}
-        fmt.Println("Length of longest continuous balanced paranthesis sequence: ",lengthOfLongestBalancedParanthesisString(pList))
-	pList = []string {")", ")", ")", "(", "("}
-        fmt.Println("Length of longest continuous balanced paranthesis sequence: ",lengthOfLongestBalancedParanthesisString(pList))
-	pList = []string {"(",")",")",")","(","(","(",")","(",")",")","(",")"}
-	fmt.Println("Length of longest continuous balanced paranthesis sequence: ",lengthOfLongestBalancedParanthesisString(pList))
-	pList = []string {"(","(",")","(",")",")"}
-        fmt.Println("Length of longest continuous balanced paranthesis sequence: ",lengthOfLongestBalancedParanthesisString(pList))      
-        pList = []string {"(","(","(",")","(",")",")"}
-        fmt.Println("Length of longest continuous balanced paranthesis sequence: ",lengthOfLongestBalancedParanthesisString(pList))
-        pList = []string {"(","(","(",")",")",")",")"}
-        fmt.Println("Length of longest continuous balanced paranthesis sequence: ",lengthOfLongestBalancedParanthesisString(pList))
-	pList = []string {"(",")",")",")",")","(","("}
-        fmt.Println("Length of longest continuous balanced paranthesis sequence: ",lengthOfLongestBalancedParanthesisString(pList))
+	pList := []string{"(", ")", "(", "(", "(", ")"}
+	fmt.Println("Length of longest continuous balanced paranthesis sequence: ", lengthOfLongestBalancedParanthesisString(pList))
+	pList = []string{"(", ")", "(", "(", "(", ")", ")"}
+	fmt.Println("Length of longest continuous balanced paranthesis sequence: ", lengthOfLongestBalancedParanthesisString(pList))
+	pList = []string{")", ")", ")", "(", "("}
+	fmt.Println("Length of longest continuous balanced paranthesis sequence: ", lengthOfLongestBalancedParanthesisString(pList))
+	pList = []string{"(", ")", ")", ")", "(", "(", "(", ")", "(", ")", ")", "(", ")"}
+	fmt.Println("Length of longest continuous balanced paranthesis sequence: ", lengthOfLongestBalancedParanthesisString(pList))
+	pList = []string{"(", "(", ")", "(", ")", ")"}
+	fmt.Println("Length of longest continuous balanced paranthesis sequence: ", lengthOfLongestBalancedParanthesisString(pList))
+	pList = []string{"(", "(", "(", ")", "(", ")", ")"}
+	fmt.Println("Length of longest continuous balanced paranthesis sequence: ", lengthOfLongestBalancedParanthesisString(pList))
+	pList = []string{"(", "(", "(", ")", ")", ")", ")"}
+	fmt.Println("Length of longest continuous balanced paranthesis sequence: ", lengthOfLongestBalancedParanthesisString(pList))
+	pList = []string{"(", ")", ")", ")", ")", "(", "("}
+	fmt.Println("Length of longest continuous balanced paranthesis sequence: ", lengthOfLongestBalancedParanthesisString(pList))
 }
 
 /*
@@ -110,33 +110,33 @@ func lengthOfLongestBalancedParanthesisString(paranthesisList []string) int {
 	previous := paranthesisList[0]
 	if previous == "(" {
 		left = 1
-	}//if right paranthesis is found that is anyone unbalanced so no need to increment 
+	} //if right paranthesis is found that is anyone unbalanced so no need to increment
 	for i := 1; i < len(paranthesisList); i++ {
 		if paranthesisList[i] == "(" {
 			left++
-		} else if paranthesisList[i] == ")" && left > 0 { 
+		} else if paranthesisList[i] == ")" && left > 0 {
 			//there has to be atleast one left paranthesis for possibility of a balanced list
 			right++
 		}
 		if left < right {
- 			if length < left * 2{
-			  length = left * 2 //update length only if it is higher than current length
- 			}
+			if length < left*2 {
+				length = left * 2 //update length only if it is higher than current length
+			}
 			//when left paranthesis becomes zero any number of right paranthesis before it need to be reset
 			if previous == paranthesisList[i] {
 				left = 0
 				right = 0
 			}
 		} else if left >= right {
- 			if length < right * 2{
-			  length = right * 2
- 			}
+			if length < right*2 {
+				length = right * 2
+			}
 			//reset right only if there are consecutive left paranthesis
-			if previous == paranthesisList[i] && previous != ")"{
+			if previous == paranthesisList[i] && previous != ")" {
 				right = 0
 			}
 		}
-          previous = paranthesisList[i]
+		previous = paranthesisList[i]
 	}
 	return length
 }
@@ -147,5 +147,5 @@ Notes:
 
 1. Printing values of different types in fmt.Println can be accomplished by using commas instead of + which would expect all values to be strings
 2. append function definition is append( slice_tobe_appended_to, values_tobe_appended). This is function that works for all standard types with expectation that both slice and value are of same type
-3. 
+3.
 */
