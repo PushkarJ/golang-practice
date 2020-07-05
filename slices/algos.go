@@ -13,7 +13,10 @@ func Algos() {
 
 	list = []int{1, 1, 3, 4, 6, 6, 8, 90}
 	fmt.Println("List with Duplicates: ", list, "List without duplicates: ", removeDuplicatesFromASortedList(list))
-
+	list = []int{1, 2, 4, 6, 7, 8, 10}
+	fmt.Println("Does Pythagorean Triplet for ", list, "exists? ", findPythagoreanTriplet(list))
+	list = []int{7, 1, 18, 6, 5, 89, 14}
+	fmt.Println("Does Pythagorean Triplet for ", list, "exists? ", findPythagoreanTriplet(list))
 	pList := []string{"(", ")", "(", "(", "(", ")"}
 	fmt.Println("Length of longest continuous balanced paranthesis sequence: ", lengthOfLongestBalancedParanthesisString(pList))
 	pList = []string{"(", ")", "(", "(", "(", ")", ")"}
@@ -70,8 +73,7 @@ func findTwoNumbersWhoseSumIsEqualToAGivenValue(numList []int, sum int) bool {
 
 /*
 
-Find any two numbers in an ordered slice or a list, whose sum is equal to given number
-
+Remove duplicates from a sorted list
 Assumptions:
 
 Negative numbers allowed,
@@ -139,6 +141,34 @@ func lengthOfLongestBalancedParanthesisString(paranthesisList []string) int {
 		previous = paranthesisList[i]
 	}
 	return length
+}
+
+/* Check if a pythagorean triplet exists
+
+Assumptions:
+1. All numbers are integers (positive)
+2. Square of all numbers is less than max limit of the type
+
+*/
+
+func findPythagoreanTriplet(numbers []int) bool {
+	squareToRoot := make(map[int]bool)
+
+	for i := 0; i < len(numbers); i++ {
+		square := numbers[i] * numbers[i]
+		squareToRoot[square] = true
+	}
+	for i := 0; i < len(numbers); i++ {
+		for j := 0; j < len(numbers); j++ {
+			sumOfSquares := numbers[i]*numbers[i] + numbers[j]*numbers[j]
+			// if key not present golang map implementation will return false
+			if squareToRoot[sumOfSquares] {
+				return true
+			}
+		}
+	}
+	return false
+
 }
 
 /*
