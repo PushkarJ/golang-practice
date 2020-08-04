@@ -3,7 +3,7 @@
 Notes:
 
 1. Pass arguments for struct vars as reference; its easier to check for nil references
-2. ALWAYS: Check node for nil-ness as well as left and/or right to prevent referencing like this (nil).left that causes panic
+2. ALWAYS: Check node for nil-ness as well as Left and/or Right to prevent referencing like this (nil).left that causes panic
 
 */
 package trees
@@ -12,103 +12,113 @@ import (
 	"fmt"
 )
 
-type Node struct {
-	left  *Node
-	right *Node
-	value int
+type TreeNode struct {
+	Left  *TreeNode
+	Right *TreeNode
+	Val int
 }
 
 func Algos() {
 	fmt.Println("Minimum depth of BTree: ", findMinDepthOfBTree(nil))
         fmt.Println("Maximum depth of BTree: ", findMaxDepthOfBTree(nil))
 	fmt.Println("Is Tree symmetrical? ", isTreeSymmetrical(nil))
-	root := Node{left: nil, right: nil, value: 1}
+        fmt.Println("Does Path to sum 5 exists?", hasPathSum(nil, 5))
+	root := TreeNode{Left: nil, Right: nil, Val: 1}
 	fmt.Println("Minimum depth of BTree: ", findMinDepthOfBTree(&root))
         fmt.Println("Maximum depth of BTree: ", findMaxDepthOfBTree(&root))
 	fmt.Println("Is Tree symmetrical? ", isTreeSymmetrical(&root))
-	left := Node{left: nil, right: nil, value: 2}
-	root = Node{left: &left, right: nil, value: 1}
+        fmt.Println("Does Path to sum 1 exists?", hasPathSum(&root, 1))
+	left := TreeNode{Left: nil, Right: nil, Val: 2}
+	root = TreeNode{Left: &left, Right: nil, Val: 1}
 	fmt.Println("Minimum depth of BTree: ", findMinDepthOfBTree(&root))
         fmt.Println("Maximum depth of BTree: ", findMaxDepthOfBTree(&root))
 	fmt.Println("Is Tree symmetrical? ", isTreeSymmetrical(&root))
-	right := Node{left: nil, right: nil, value: 3}
-	root = Node{left: nil, right: &right, value: 1}
+        fmt.Println("Does Path to sum 5 exists?", hasPathSum(&root, 5))
+	right := TreeNode{Left: nil, Right: nil, Val: 3}
+	root = TreeNode{Left: nil, Right: &right, Val: 1}
 	fmt.Println("Minimum depth of BTree: ", findMinDepthOfBTree(&root))
         fmt.Println("Maximum depth of BTree: ", findMaxDepthOfBTree(&root))
 	fmt.Println("Is Tree symmetrical? ", isTreeSymmetrical(&root))
-	root = Node{left: &left, right: &right, value: 1}
-	root.right.value = 2
+        fmt.Println("Does Path to sum 5 exists?", hasPathSum(&root, 5))
+	root = TreeNode{Left: &left, Right: &right, Val: 1}
+	root.Right.Val = 2
 	fmt.Println("Minimum depth of BTree: ", findMinDepthOfBTree(&root))
         fmt.Println("Maximum depth of BTree: ", findMaxDepthOfBTree(&root))
 	fmt.Println("Is Tree symmetrical? ", isTreeSymmetrical(&root))
-	leftOfleft := Node{left: nil, right: nil, value: 4}
-	left = Node{left: &leftOfleft, right: nil, value: 2}
-	root = Node{left: &left, right: &right, value: 1}
+        fmt.Println("Does Path to sum 5 exists?", hasPathSum(&root, 5))
+	leftOfleft := TreeNode{Left: nil, Right: nil, Val: 4}
+	left = TreeNode{Left: &leftOfleft, Right: nil, Val: 2}
+	root = TreeNode{Left: &left, Right: &right, Val: 1}
 	fmt.Println("Minimum depth of BTree: ", findMinDepthOfBTree(&root))
         fmt.Println("Maximum depth of BTree: ", findMaxDepthOfBTree(&root))
 	fmt.Println("Is Tree symmetrical? ", isTreeSymmetrical(&root))
-	rightOfright := Node{left: nil, right: nil, value: 5}
-	right = Node{left: nil, right: &rightOfright, value: 3}
-	root = Node{left: &left, right: &right, value: 1}
+        fmt.Println("Does Path to sum 5 exists?", hasPathSum(&root, 5))
+	rightOfright := TreeNode{Left: nil, Right: nil, Val: 5}
+	right = TreeNode{Left: nil, Right: &rightOfright, Val: 3}
+	root = TreeNode{Left: &left, Right: &right, Val: 1}
 	fmt.Println("Minimum depth of BTree: ", findMinDepthOfBTree(&root))
         fmt.Println("Maximum depth of BTree: ", findMaxDepthOfBTree(&root))
 	fmt.Println("Is Tree symmetrical? ", isTreeSymmetrical(&root))
-	leftOfright := Node{left: nil, right: nil, value: 6}
-	right = Node{left: &leftOfright, right: &rightOfright, value: 3}
-	root = Node{left: &left, right: &right, value: 1}
+        fmt.Println("Does Path to sum 5 exists?", hasPathSum(&root, 5))
+	leftOfright := TreeNode{Left: nil, Right: nil, Val: 6}
+	right = TreeNode{Left: &leftOfright, Right: &rightOfright, Val: 3}
+	root = TreeNode{Left: &left, Right: &right, Val: 1}
 	fmt.Println("Minimum depth of BTree: ", findMinDepthOfBTree(&root))
         fmt.Println("Maximum depth of BTree: ", findMaxDepthOfBTree(&root))
 	fmt.Println("Is Tree symmetrical? ", isTreeSymmetrical(&root))
-	rightOfLeft := Node{left:nil, right: nil, value: 6}
-	left = Node{left:nil, right: &rightOfLeft, value: 2}
-	right = Node{left: &leftOfright, right: nil, value: 2}
+        fmt.Println("Does Path to sum 5 exists?", hasPathSum(&root, 5))
+	rightOfleft := TreeNode{Left:nil, Right: nil, Val: 6}
+	left = TreeNode{Left:nil, Right: &rightOfleft, Val: 2}
+	right = TreeNode{Left: &leftOfright, Right: nil, Val: 2}
         fmt.Println("Minimum depth of BTree: ", findMinDepthOfBTree(&root))
         fmt.Println("Maximum depth of BTree: ", findMaxDepthOfBTree(&root))
         fmt.Println("Is Tree symmetrical? ", isTreeSymmetrical(&root))
-        left = Node{left:nil, right: nil, value: 2}
-        right = Node{left: &leftOfright, right: nil, value: 2}
+        fmt.Println("Does Path to sum 5 exists?", hasPathSum(&root, 5))
+        left = TreeNode{Left:nil, Right: nil, Val: 2}
+        right = TreeNode{Left: &leftOfright, Right: nil, Val: 2}
         fmt.Println("Minimum depth of BTree: ", findMinDepthOfBTree(&root))
         fmt.Println("Maximum depth of BTree: ", findMaxDepthOfBTree(&root))
         fmt.Println("Is Tree symmetrical? ", isTreeSymmetrical(&root))
+	fmt.Println("Does Path to sum 5 exists?", hasPathSum(&root, 5))
 }
 
-func findMinDepthOfBTree(root *Node) int {
+func findMinDepthOfBTree(root *TreeNode) int {
 	if root == nil {
 		return 0
 	}
-	if isNodeLeaf(root) {
+	if isTreeNodeLeaf(root) {
 		return 1
-	} else if isNodeLeaf(root.left) || isNodeLeaf(root.right) {
+	} else if isTreeNodeLeaf(root.Left) || isTreeNodeLeaf(root.Right) {
 		return 2
 	} else {
-		if root.left != nil && root.right != nil {
-			leftTree := 1 + findMinDepthOfBTree(root.left)
-			rightTree := 1 + findMinDepthOfBTree(root.right)
+		if root.Left != nil && root.Right != nil {
+			leftTree := 1 + findMinDepthOfBTree(root.Left)
+			rightTree := 1 + findMinDepthOfBTree(root.Right)
 			if leftTree > rightTree {
 				return rightTree
 			} else {
 				return leftTree
 			}
-		} else if root.left != nil {
-			return 1 + findMinDepthOfBTree(root.right)
+		} else if root.Left != nil {
+			return 1 + findMinDepthOfBTree(root.Right)
 		} else {
-			return 1 + findMinDepthOfBTree(root.left)
+			return 1 + findMinDepthOfBTree(root.Left)
 		}
 	}
 }
 
-func findMaxDepthOfBTree(node *Node)(int){
+func findMaxDepthOfBTree(node *TreeNode)(int){
 
 	if node == nil {
                 return 0
         }
-        if isNodeLeaf(node) {
+        if isTreeNodeLeaf(node) {
                 return 1
-        } else if isNodeLeaf(node.left) && isNodeLeaf(node.right) {
+        } else if isTreeNodeLeaf(node.Left) && isTreeNodeLeaf(node.Right) {
                 return 2
         }else{
-		left := 1 + findMaxDepthOfBTree(node.left)
-		right := 1 + findMaxDepthOfBTree(node.right)
+		left := 1 + findMaxDepthOfBTree(node.Left)
+		right := 1 + findMaxDepthOfBTree(node.Right)
 		if left > right{
 			return left
 		}else{
@@ -117,41 +127,80 @@ func findMaxDepthOfBTree(node *Node)(int){
 	}
 }
 
-func isNodeLeaf(node *Node) bool {
+func isTreeNodeLeaf(node *TreeNode) bool {
 	if node == nil {
 		return false
 	}
 
-	if node.left == node.right && node.left == nil {
+	if node.Left == node.Right && node.Left == nil {
 		return true
 	}
 	return false
 }
 
-func isTreeSymmetrical(root *Node)(bool) {
+func isTreeSymmetrical(root *TreeNode)(bool) {
 
-	if root == nil || isNodeLeaf(root) {
+	if root == nil || isTreeNodeLeaf(root) {
 		return true
 	} else {
-		return areTwoTreesMirrorTrees(root.left, root.right)
+		return areTwoTreesMirrorTrees(root.Left, root.Right)
 	}
 
 }
 
-func areTwoTreesMirrorTrees(left *Node, right *Node)(bool) {
+func areTwoTreesMirrorTrees(left *TreeNode, right *TreeNode)(bool) {
 	if left == right && left == nil{
 		return true
 	}
 	if (left == nil && right != nil) || (right == nil && left != nil){
 		return false
 	}
-	if isNodeLeaf(left) && isNodeLeaf(right) {
-		return left.value == right.value
-	} else if isNodeLeaf(left) != isNodeLeaf(right) {
+	if isTreeNodeLeaf(left) && isTreeNodeLeaf(right) {
+		return left.Val == right.Val
+	} else if isTreeNodeLeaf(left) != isTreeNodeLeaf(right) {
 		return false
 	}
 	//This means both are not leaf nodes
 
-	return left.value == right.value && areTwoTreesMirrorTrees(left.right, right.left) && areTwoTreesMirrorTrees(left.left, right.right)
+	return left.Val == right.Val && areTwoTreesMirrorTrees(left.Right, right.Left) && areTwoTreesMirrorTrees(left.Left, right.Right)
+}
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+func hasPathSum(root *TreeNode, sum int) bool {
+    
+    aSum := 0
+    return doesMatchingSumExists(sum, aSum, root)
+    
+}
+
+func doesMatchingSumExists(eSum int, aSum int, node *TreeNode)(bool){
+    if node == nil {
+        return false
+    }else if isTreeNodeLeaf(node){
+        return eSum == aSum + node.Val
+    }else{
+        aSum = aSum + node.Val
+        if node.Left != nil && node.Right == nil && isTreeNodeLeaf(node.Left){
+            return eSum == aSum + node.Left.Val
+        }else if node.Right != nil && node.Left == nil && isTreeNodeLeaf(node.Right){
+                return eSum == aSum + node.Right.Val
+        }else if isTreeNodeLeaf(node.Left) && isTreeNodeLeaf(node.Right){
+            return eSum == aSum + node.Right.Val || eSum == aSum + node.Left.Val
+        }else{
+            if node.Right == nil{
+                return doesMatchingSumExists(eSum, aSum, node.Left)
+            }else if node.Left == nil{
+                return doesMatchingSumExists(eSum, aSum, node.Right)
+            }else{
+            return doesMatchingSumExists(eSum, aSum, node.Left) || doesMatchingSumExists(eSum, aSum, node.Right)
+            }
+        }
+    }
 }
 

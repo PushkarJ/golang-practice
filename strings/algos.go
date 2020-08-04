@@ -2,6 +2,7 @@ package strings
 
 import (
 	"fmt"
+	"strings"
 )
 
 func Algos() {
@@ -17,8 +18,10 @@ func Algos() {
 
 	for i := 0; i < len(one); i++ {
 		fmt.Println("Are ", one[i], " and ", two[i], " strings anagrams?", areTwoStringsAnagrams(one[i], two[i]))
+		fmt.Println("Longest substring in ", one[i], " is how many long without repeated characters? ", lengthOfLongestSubstring(one[i]))
+		fmt.Println("Longest substring in ", two[i], " is how many long without repeated characters? ", lengthOfLongestSubstring(two[i]))
 	}
-
+	
 }
 
 func areTwoStringsAnagrams(one string, two string) bool {
@@ -45,4 +48,26 @@ func areTwoStringsAnagrams(one string, two string) bool {
 		}
 	}
 	return true
+}
+
+func lengthOfLongestSubstring(s string) int {
+    strSlice := strings.Split(s,"")
+    countOcc := map[string] int {}
+    length := 0
+    longest := 0
+    for i,literal := range strSlice{
+        if val, ok := countOcc[literal];ok{
+            diff := i- val
+            if length >= diff {
+                length = diff -1 
+            }
+        }
+        countOcc[literal] = i
+        length ++
+        if longest < length{
+                longest = length
+        }
+    }
+    return longest
+    
 }
