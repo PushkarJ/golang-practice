@@ -2,6 +2,7 @@ package strings
 
 import (
 	"fmt"
+	"strconv"
 	"strings"
 )
 
@@ -15,7 +16,9 @@ func Algos() {
 	if len(one) != len(two) {
 		return
 	}
-
+        for i := 1 ; i < 30 ; i++ {
+		fmt.Println("Count and say for iteration ", strconv.Itoa(i), "is: ", countAndSay(i)) 
+	}
 	for i := 0; i < len(one); i++ {
 		fmt.Println("Are ", one[i], " and ", two[i], " strings anagrams?", areTwoStringsAnagrams(one[i], two[i]))
 		fmt.Println("Longest substring in ", one[i], " is how many long without repeated characters? ", lengthOfLongestSubstring(one[i]))
@@ -70,4 +73,32 @@ func lengthOfLongestSubstring(s string) int {
 	}
 	return longest
 
+}
+
+func countAndSay(n int) string {
+    if n == 1{
+        return "1"
+    }
+    value := countAndSay(n-1)
+    output := ""
+    ele := ""
+    count := 0
+    for _, c := range strings.Split(value, ""){
+        if ele == ""{
+            ele = c
+            count ++
+        }else if ele == c{
+                count ++
+        }else{
+                cs := strconv.Itoa(count)
+                output += cs + ele
+                ele = c
+                count = 1
+        }
+    }
+    cs := strconv.Itoa(count)
+    output += cs + ele
+
+    return output
+  
 }

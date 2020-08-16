@@ -2,7 +2,7 @@ package slices
 
 import (
 	"fmt"
-	"strings"
+        "strings"
 )
 
 func Algos() {
