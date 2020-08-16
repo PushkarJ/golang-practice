@@ -17,7 +17,6 @@ func Algos() {
 	fmt.Println("Does Pythagorean Triplet for ", list, "exists? ", findPythagoreanTriplet(list))
 	list = []int{7, 1, 18, 6, 5, 89, 14}
 	fmt.Println("Does Pythagorean Triplet for ", list, "exists? ", findPythagoreanTriplet(list))
-	pList := []string{"(", ")", "(", "(", "(", ")"}
 }
 
 /*
