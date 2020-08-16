@@ -2,7 +2,7 @@ package slices
 
 import (
 	"fmt"
-	//  "strings"
+	"strings"
 )
 
 func Algos() {
@@ -18,21 +18,6 @@ func Algos() {
 	list = []int{7, 1, 18, 6, 5, 89, 14}
 	fmt.Println("Does Pythagorean Triplet for ", list, "exists? ", findPythagoreanTriplet(list))
 	pList := []string{"(", ")", "(", "(", "(", ")"}
-	fmt.Println("Length of longest continuous balanced paranthesis sequence: ", lengthOfLongestBalancedParanthesisString(pList))
-	pList = []string{"(", ")", "(", "(", "(", ")", ")"}
-	fmt.Println("Length of longest continuous balanced paranthesis sequence: ", lengthOfLongestBalancedParanthesisString(pList))
-	pList = []string{")", ")", ")", "(", "("}
-	fmt.Println("Length of longest continuous balanced paranthesis sequence: ", lengthOfLongestBalancedParanthesisString(pList))
-	pList = []string{"(", ")", ")", ")", "(", "(", "(", ")", "(", ")", ")", "(", ")"}
-	fmt.Println("Length of longest continuous balanced paranthesis sequence: ", lengthOfLongestBalancedParanthesisString(pList))
-	pList = []string{"(", "(", ")", "(", ")", ")"}
-	fmt.Println("Length of longest continuous balanced paranthesis sequence: ", lengthOfLongestBalancedParanthesisString(pList))
-	pList = []string{"(", "(", "(", ")", "(", ")", ")"}
-	fmt.Println("Length of longest continuous balanced paranthesis sequence: ", lengthOfLongestBalancedParanthesisString(pList))
-	pList = []string{"(", "(", "(", ")", ")", ")", ")"}
-	fmt.Println("Length of longest continuous balanced paranthesis sequence: ", lengthOfLongestBalancedParanthesisString(pList))
-	pList = []string{"(", ")", ")", ")", ")", "(", "("}
-	fmt.Println("Length of longest continuous balanced paranthesis sequence: ", lengthOfLongestBalancedParanthesisString(pList))
 }
 
 /*
@@ -95,52 +80,6 @@ func removeDuplicatesFromASortedList(numList []int) []int {
 	}
 	expectedList = append(expectedList, numList[len(numList)-1])
 	return expectedList
-}
-
-/*
-
-Find the longest continuous sequence of balanced paranthesis.
-
-Assumptions: String contains only paranthesis of one type e.g. ( )
-
-*/
-
-func lengthOfLongestBalancedParanthesisString(paranthesisList []string) int {
-	left := 0
-	right := 0
-	length := 0
-	previous := paranthesisList[0]
-	if previous == "(" {
-		left = 1
-	} //if right paranthesis is found that is anyway unbalanced so no need to increment
-	for i := 1; i < len(paranthesisList); i++ {
-		if paranthesisList[i] == "(" {
-			left++
-		} else if paranthesisList[i] == ")" && left > 0 {
-			//there has to be atleast one left paranthesis for possibility of a balanced list
-			right++
-		}
-		if left < right {
-			if length < left*2 {
-				length = left * 2 //update length only if it is higher than current length
-			}
-			//when left paranthesis becomes zero any number of right paranthesis before it need to be reset
-			if previous == paranthesisList[i] {
-				left = 0
-				right = 0
-			}
-		} else if left >= right {
-			if length < right*2 {
-				length = right * 2
-			}
-			//reset right only if there are consecutive left paranthesis
-			if previous == paranthesisList[i] && previous != ")" {
-				right = 0
-			}
-		}
-		previous = paranthesisList[i]
-	}
-	return length
 }
 
 /* Check if a pythagorean triplet exists
