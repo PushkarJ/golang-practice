@@ -62,7 +62,7 @@ func longestValidParentheses(p string) int {
 		l = 0
 		s = &stack{
 			content: []int{-1},
-		}//this covers the scenario where the entire string is perfectly balanced
+		} //this covers the scenario where the entire string is perfectly balanced
 	)
 
 	for i, c := range p {
@@ -75,7 +75,7 @@ func longestValidParentheses(p string) int {
 			s.push(i)
 			continue
 		}
-		l = max(l, i-s.peek())//allows us to change length based on total contiguous balanced pairs
+		l = max(l, i-s.peek()) //allows us to change length based on total contiguous balanced pairs
 
 	}
 	return l
