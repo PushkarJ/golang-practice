@@ -1,3 +1,5 @@
+package numbers
+
 import "math"
 
 //As tested on leetcode
